@@ -15,12 +15,7 @@ public class CaesarVerschlüsselung {
                 Scanner scanner = new Scanner(System.in);
                 String Originaltext= StringScanner("Geben sie das zu Kryptografierende Wort ein: ", scanner);
                 int Verschiebung = IntScanner("Geben sie die Verschiebung im Alphabet in ganzen Zahlen an: ", scanner);
-                String Ergebnis = "";
-                for (int i = 0; i < Originaltext.length(); i++) 
-                {
-                    Ergebnis= Ergebnis + Verschluesselung(Originaltext.charAt(i), Verschiebung);
-                }
-                System.out.println ("Das Verschlüsselte Wort ist:" + Ergebnis);
+                System.out.println ("Das Verschlüsselte Wort ist:" + Ergebnisberechnung(Originaltext, Verschiebung));
                 scanner.close();
             }
 
@@ -57,5 +52,14 @@ public class CaesarVerschlüsselung {
                         System.out.print(Text);
                         int input = scanner.nextInt();
                         return(input);
+                    }
+                public static String Ergebnisberechnung (String Originaltext, int Verschiebung)
+                    {
+                        String Ergebnis = "";
+                        for (int i = 0; i < Originaltext.length(); i++) 
+                        {
+                            Ergebnis= Ergebnis + Verschluesselung(Originaltext.charAt(i), Verschiebung);
+                        }
+                        return (Ergebnis);
                     }
 }
