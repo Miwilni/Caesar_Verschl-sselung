@@ -2,6 +2,9 @@ import java.util.Scanner;
 import java.util.Arrays;
 import java.util.List;
 public class CaesarVerschlüsselung {
+
+
+
     public static void main (String[] args) 
             { 
                 System.out.print("Herzlich Willkommen zum Verschlüsselungsprogramm. ");
@@ -9,20 +12,20 @@ public class CaesarVerschlüsselung {
                 //print gibt die Strings aus verschiedenen Print anweisungen in einer Zeile aus. Println gibt jede print Anweisung in einer Zeile aus (println=printline)
                 //ein Java Dokument beinhaltet immer eine Klasse(definiert mit "public class [Name der Klasse]"), in der widerum eine Hauptmethode namens main mit "public static void main (String[] args){}" festgelegt wird.
                 //am Ende jeder Anweisungszeile innerhalb einer Methode steht ein ";" und bereiche von z.B. Klassen werden mit "{" angefangen und mit "}" beendet.
-                String Originaltext;
                 Scanner scanner = new Scanner(System.in);
-                System.out.print("Geben sie das zu Kryptografierende Wort ein: ");
-                Originaltext= scanner.nextLine();
-                System.out.print("Geben sie die Verschiebung im Alphabet in ganzen Zahlen an: ");
-                int Verschiebung = scanner.nextInt();
-                scanner.close();
+                String Originaltext= StringScanner("Geben sie das zu Kryptografierende Wort ein: ", scanner);
+                int Verschiebung = IntScanner("Geben sie die Verschiebung im Alphabet in ganzen Zahlen an: ", scanner);
                 String Ergebnis = "";
                 for (int i = 0; i < Originaltext.length(); i++) 
                 {
                     Ergebnis= Ergebnis + Verschluesselung(Originaltext.charAt(i), Verschiebung);
                 }
                 System.out.println ("Das Verschlüsselte Wort ist:" + Ergebnis);
+                scanner.close();
             }
+
+
+
                 public static char Verschluesselung (char Originaltext, int Verschiebung)
                     {
                         char Ergebnis;
@@ -35,7 +38,24 @@ public class CaesarVerschlüsselung {
                         if (IndexErgebnis > 25) {
                             IndexErgebnis = IndexErgebnis - 26;
                         }
+                        if (IndexErgebnis < 0) {
+                            IndexErgebnis = 26 - IndexErgebnis;
+                        }
                         Ergebnis = listAlphabet.get(IndexErgebnis);
                         return(Ergebnis);
+                    }
+
+                
+                public static String StringScanner (String Text, Scanner scanner)
+                    {
+                        System.out.print(Text);
+                        String input = scanner.nextLine();
+                        return(input);
+                    }
+                public static int IntScanner (String Text, Scanner scanner)
+                    {
+                        System.out.print(Text);
+                        int input = scanner.nextInt();
+                        return(input);
                     }
 }

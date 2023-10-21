@@ -1,0 +1,4 @@
+* text=auto
+
+# Dateien, die nicht automatisch konvertiert werden sollen
+*.java text eol=lf
