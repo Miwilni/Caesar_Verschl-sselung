@@ -60,18 +60,10 @@ public class CaesarVerschlüsselung {
                         return(Ergebnis);
                     }
 
-                
                 public static String StringScanner (String Text, Scanner scanner)
                     {
                         System.out.print(Text);
                         String input = scanner.nextLine();
-                        return(input);
-                    }
-
-                public static int IntScanner (String Text, Scanner scanner)
-                    {
-                        System.out.print(Text);
-                        int input = scanner.nextInt();
                         return(input);
                     }
 
@@ -93,6 +85,4 @@ public class CaesarVerschlüsselung {
                         }
                         return (Ergebnis);
                     }
-                
-                
 }
