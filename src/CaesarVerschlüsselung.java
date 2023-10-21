@@ -29,12 +29,20 @@ public class CaesarVerschlüsselung {
                         UnterBearbeitung = Character.toLowerCase(UnterBearbeitung);
                         List<Character> listAlphabet = Arrays.asList('a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z');
                         int IndexUnterBearbeitung= listAlphabet.indexOf(UnterBearbeitung);
-                        int IndexErgebnis = IndexUnterBearbeitung + Verschiebung;
-                        if (IndexErgebnis > 25) {
-                            IndexErgebnis = IndexErgebnis - 26;
+                        if (IndexUnterBearbeitung == -1 ){
+                            return (UnterBearbeitung);
                         }
-                        if (IndexErgebnis < 0) {
-                            IndexErgebnis = 26 - IndexErgebnis;
+                        int IndexErgebnis = IndexUnterBearbeitung + Verschiebung;
+                        while (IndexErgebnis < 0 || IndexErgebnis > 25){
+                            if (IndexErgebnis > 25) 
+                                {
+                                    IndexErgebnis = IndexErgebnis - 26;
+                                }
+                            if (IndexErgebnis < 0) 
+                                {
+                                    IndexErgebnis = 26 - IndexErgebnis;
+                                }
+                        
                         }
                         Ergebnis = listAlphabet.get(IndexErgebnis);
                         return(Ergebnis);
@@ -47,12 +55,14 @@ public class CaesarVerschlüsselung {
                         String input = scanner.nextLine();
                         return(input);
                     }
+
                 public static int IntScanner (String Text, Scanner scanner)
                     {
                         System.out.print(Text);
                         int input = scanner.nextInt();
                         return(input);
                     }
+
                 public static String Ergebnisberechnung (String Originaltext, int Verschiebung)
                     {
                         String Ergebnis = "";
@@ -62,4 +72,6 @@ public class CaesarVerschlüsselung {
                         }
                         return (Ergebnis);
                     }
+                
+                
 }
