@@ -68,7 +68,16 @@ public class CaesarVerschlüsselung {
                         String Ergebnis = "";
                         for (int i = 0; i < Originaltext.length(); i++) 
                         {
-                            Ergebnis= Ergebnis + Verschluesselung(Originaltext.charAt(i), Verschiebung);
+                            char ErgebnisChar = Originaltext.charAt(i);
+                            if (Character.isUpperCase(ErgebnisChar))
+                            {
+                                Ergebnis= Ergebnis + Character.toUpperCase(Verschluesselung(ErgebnisChar, Verschiebung));
+                            }
+                            else
+                            {
+                                Ergebnis= Ergebnis + Verschluesselung(ErgebnisChar, Verschiebung);
+                            }
+                            
                         }
                         return (Ergebnis);
                     }
