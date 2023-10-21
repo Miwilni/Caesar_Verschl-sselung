@@ -40,7 +40,7 @@ public class CaesarVerschlüsselung {
                                 }
                             if (IndexErgebnis < 0) 
                                 {
-                                    IndexErgebnis = 26 - IndexErgebnis;
+                                    IndexErgebnis = 26 + IndexErgebnis;
                                 }
                         
                         }
