@@ -14,7 +14,19 @@ public class CaesarVerschlüsselung {
                 //am Ende jeder Anweisungszeile innerhalb einer Methode steht ein ";" und bereiche von z.B. Klassen werden mit "{" angefangen und mit "}" beendet.
                 Scanner scanner = new Scanner(System.in);
                 String Originaltext= StringScanner("Geben sie das zu Kryptografierende Wort ein: ", scanner);
-                int Verschiebung = IntScanner("Geben sie die Verschiebung im Alphabet in ganzen Zahlen an: ", scanner);
+                
+                String VerschiebungString = StringScanner("Geben sie die Verschiebung im Alphabet in ganzen Zahlen an: ", scanner);
+                int Verschiebung = 0;
+                if (VerschiebungString.matches("\\d+"))
+                {
+                    Verschiebung = Integer.parseInt(VerschiebungString);
+                }
+                else
+                {
+                    System.out.println("Bitte geben sie als Verschiebung eine Zahl an und starten sie das Programm erneut!");
+                    System.exit(0);
+                    scanner.close();
+                }
                 System.out.println ("Das Verschlüsselte Wort ist:" + Ergebnisberechnung(Originaltext, Verschiebung));
                 scanner.close();
             }
