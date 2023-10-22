@@ -20,7 +20,7 @@ public class CaesarVerschlüsselung {
             }
 
 
-    public static int StringInInt(String VerschiebungsString, Scanner scanner)
+    public static int StringInInt(String VerschiebungsString, Scanner scanner) //TODO: While Funktion nutzen und Programm bei Verschiebung ein Buchstabe weiterlaufen lassen
         {
             int Verschiebung = 0;
             Boolean Minus = false;
@@ -48,7 +48,7 @@ public class CaesarVerschlüsselung {
         }
 
 
-    public static char Verschluesselung (char OriginalChar, int Verschiebung)
+    public static char Verschluesselung (char OriginalChar, int Verschiebung) //TODO Verschlüsselung aufteilen und Code in Cleancode verwandeln TODO: ß implementieren 
         {
             char ErgebnisChar;
             char UnterBearbeitung;
@@ -86,7 +86,7 @@ public class CaesarVerschlüsselung {
         }
 
 
-    public static String Ergebnisberechnung (String Originaltext, int Verschiebung)
+    public static String Ergebnisberechnung (String Originaltext, int Verschiebung) //TODO: Verschiebung um 0 implementieren
         {
             String Ergebnis = "";
             for (int i = 0; i < Originaltext.length(); i++) 
