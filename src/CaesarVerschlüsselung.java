@@ -4,7 +4,6 @@ import java.util.List;
 public class CaesarVerschlüsselung {
 
 
-
     public static void main (String[] args) 
             { 
                 System.out.print("Herzlich Willkommen zum Verschlüsselungsprogramm. ");
@@ -19,6 +18,7 @@ public class CaesarVerschlüsselung {
                 System.out.println ("Das Verschlüsselte Wort ist:" + Ergebnisberechnung(Originaltext, Verschiebung));
                 scanner.close();
             }
+
 
     public static int StringInInt(String VerschiebungsString, Scanner scanner)
         {
@@ -46,6 +46,7 @@ public class CaesarVerschlüsselung {
                 }
             return Verschiebung;
         }
+
 
     public static char Verschluesselung (char OriginalChar, int Verschiebung)
         {
@@ -76,12 +77,14 @@ public class CaesarVerschlüsselung {
             return(ErgebnisChar);
         }
 
+
     public static String StringScanner (String Text, Scanner scanner)
         {
             System.out.print(Text);
             String input = scanner.nextLine();
             return(input);
         }
+
 
     public static String Ergebnisberechnung (String Originaltext, int Verschiebung)
         {
@@ -94,6 +97,8 @@ public class CaesarVerschlüsselung {
             }
             return (Ergebnis);
         }
+
+
     public static char UpperLower (char ErgebnisChar, int Verschiebung)
     {   
         if (Character.isUpperCase(ErgebnisChar))
