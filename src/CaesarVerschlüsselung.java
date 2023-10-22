@@ -33,11 +33,11 @@ public class CaesarVerschlüsselung {
 
 
 
-                public static char Verschluesselung (char Originaltext, int Verschiebung)
+                public static char Verschluesselung (char OriginalChar, int Verschiebung)
                     {
-                        char Ergebnis;
+                        char ErgebnisChar;
                         char UnterBearbeitung;
-                        UnterBearbeitung = Originaltext;
+                        UnterBearbeitung = OriginalChar;
                         UnterBearbeitung = Character.toLowerCase(UnterBearbeitung);
                         List<Character> listAlphabet = Arrays.asList('a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z');
                         int IndexUnterBearbeitung= listAlphabet.indexOf(UnterBearbeitung);
@@ -56,8 +56,8 @@ public class CaesarVerschlüsselung {
                                 }
                         
                         }
-                        Ergebnis = listAlphabet.get(IndexErgebnis);
-                        return(Ergebnis);
+                        ErgebnisChar = listAlphabet.get(IndexErgebnis);
+                        return(ErgebnisChar);
                     }
 
                 public static String StringScanner (String Text, Scanner scanner)
@@ -72,22 +72,20 @@ public class CaesarVerschlüsselung {
                         String Ergebnis = "";
                         for (int i = 0; i < Originaltext.length(); i++) 
                         {
-                            char ErgebnisChar = Originaltext.charAt(i);
-                            ErgebnisChar = UpperLower (ErgebnisChar);
-                            if (Character.isUpperCase(ErgebnisChar))
-                            {
-                                Ergebnis= Ergebnis + Character.toUpperCase(Verschluesselung(ErgebnisChar, Verschiebung));
-                            }
-                            else
-                            {
-                                Ergebnis= Ergebnis + Verschluesselung(ErgebnisChar, Verschiebung);
-                            }
+                            char OriginalChar = Originaltext.charAt(i);
+                            Ergebnis= Ergebnis + UpperLower(OriginalChar, Verschiebung);
                             
                         }
                         return (Ergebnis);
                     }
-                public static char UpperLower (char ErgebnisChar)
-                {
-                    
+                public static char UpperLower (char ErgebnisChar, int Verschiebung)
+                {   
+                    if (Character.isUpperCase(ErgebnisChar))
+                    {
+                    ErgebnisChar = Character.toUpperCase(Verschluesselung(ErgebnisChar, Verschiebung));
+                    }
+                    else
+                    ErgebnisChar = Verschluesselung(ErgebnisChar, Verschiebung);
+                    return (ErgebnisChar);
                 }
 }
