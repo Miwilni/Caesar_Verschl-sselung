@@ -7,15 +7,15 @@ public class CaesarVerschlüsselung {
     public static void main (String[] args) 
             { 
                 System.out.print("Herzlich Willkommen zum Verschlüsselungsprogramm. ");
-                System.out.println("Ziel des Programms ist es, den Benutzer bei der Caeser Verschlüsselung zu unterstützen!");
+                System.out.println("\nZiel des Programms ist es, den Benutzer bei der Caeser Verschlüsselung zu unterstützen!\nWenn sie 0 als Verschlüsselung eingeben, wird die zu kryptografierende Zeichenkette mit allen 25 Verschiebungen angezeigt.");
                 //print gibt die Strings aus verschiedenen Print anweisungen in einer Zeile aus. Println gibt jede print Anweisung in einer Zeile aus (println=printline)
                 //ein Java Dokument beinhaltet immer eine Klasse(definiert mit "public class [Name der Klasse]"), in der widerum eine Hauptmethode namens main mit "public static void main (String[] args){}" festgelegt wird.
                 //am Ende jeder Anweisungszeile innerhalb einer Methode steht ein ";" und bereiche von z.B. Klassen werden mit "{" angefangen und mit "}" beendet.
                 Scanner scanner = new Scanner(System.in);
-                String Originaltext= StringScanner("Geben sie das zu Kryptografierende Wort ein: ", scanner);
+                String Originaltext= StringScanner("Geben sie die zu kryptografierende Zeichenkette ein: ", scanner);
                 String VerschiebungString = StringScanner("Geben sie die Verschiebung im Alphabet in ganzen Zahlen an: ", scanner);
                 int Verschiebung = StringInInt(VerschiebungString, scanner);
-                System.out.println ("Das Verschlüsselte Wort ist:" + Ergebnisberechnung(Originaltext, Verschiebung));
+                System.out.println ("Kryptografierte Zeichenkette:" + Ergebnisberechnung(Originaltext, Verschiebung));
                 scanner.close();
             }
 
@@ -28,7 +28,6 @@ public class CaesarVerschlüsselung {
             {
                 VerschiebungsString = VerschiebungsString.replace("-", "");
                 Minus = true;
-                System.out.println ("Contains -");
             }
             if (VerschiebungsString.matches("\\d+"))
                 {   
@@ -48,7 +47,7 @@ public class CaesarVerschlüsselung {
         }
 
 
-    public static char Verschluesselung (char OriginalChar, int Verschiebung) //TODO Verschlüsselung aufteilen und Code in Cleancode verwandeln TODO: ß implementieren 
+    public static char Verschluesselung (char OriginalChar, int Verschiebung) //TODO Verschlüsselung aufteilen und Code in Cleancode verwandeln 
         {
             char ErgebnisChar;
             char UnterBearbeitung;
@@ -88,27 +87,41 @@ public class CaesarVerschlüsselung {
 
     public static String Ergebnisberechnung (String Originaltext, int Verschiebung) //TODO: Verschiebung um 0 implementieren
         {
+            String ErgebnisWort = "";
             String Ergebnis = "";
+            if (Verschiebung == 0)
+            {
+                for (int V = 0;V < 26; V++)
+                {
+                    for (int i = 0; i < Originaltext.length(); i++) 
+                        {
+                            char OriginalChar = Originaltext.charAt(i);
+                            ErgebnisWort= ErgebnisWort + UpperLower(OriginalChar, V);
+                        }
+                    Ergebnis =Ergebnis + "\n" + (V + 1) + ". " + ErgebnisWort  ;
+                    ErgebnisWort = "";
+                }
+                return (Ergebnis);
+            }
             for (int i = 0; i < Originaltext.length(); i++) 
             {
                 char OriginalChar = Originaltext.charAt(i);
                 Ergebnis= Ergebnis + UpperLower(OriginalChar, Verschiebung);
-                
             }
             return (Ergebnis);
         }
 
 
-    public static char UpperLower (char ErgebnisChar, int Verschiebung)
+    public static char UpperLower (char OriginalChar, int Verschiebung)
     {   
-        if (Character.isUpperCase(ErgebnisChar))
+        if (Character.isUpperCase(OriginalChar))
             {
-                ErgebnisChar = Character.toUpperCase(Verschluesselung(ErgebnisChar, Verschiebung));
+                OriginalChar = Character.toUpperCase(Verschluesselung(OriginalChar, Verschiebung));
             }
         else
             {
-                ErgebnisChar = Verschluesselung(ErgebnisChar, Verschiebung);
+                OriginalChar = Verschluesselung(OriginalChar, Verschiebung);
             }
-        return (ErgebnisChar);
+        return (OriginalChar);
     }
 }
