@@ -15,12 +15,12 @@ public class CaesarVerschlüsselung {
                 String Originaltext= StringScanner("Geben sie die zu kryptografierende Zeichenkette ein: ", scanner);
                 String VerschiebungString = StringScanner("Geben sie die Verschiebung im Alphabet in ganzen Zahlen an: ", scanner);
                 int Verschiebung = StringInInt(VerschiebungString, scanner);
-                System.out.println ("Kryptografierte Zeichenkette:" + Ergebnisberechnung(Originaltext, Verschiebung));
+                System.out.println ("Kryptografierte Zeichenkette: " + Ergebnisberechnung(Originaltext, Verschiebung));
                 scanner.close();
             }
 
 
-    public static int StringInInt(String VerschiebungsString, Scanner scanner) //TODO: While Funktion nutzen und Programm bei Verschiebung ein Buchstabe weiterlaufen lassen
+    public static int StringInInt(String VerschiebungsString, Scanner scanner)
         {
             int Verschiebung = 0;
             Boolean Minus = false;
@@ -36,14 +36,36 @@ public class CaesarVerschlüsselung {
                         {
                             Verschiebung = Verschiebung * -1;
                         }
+                    return Verschiebung;
                 }
-            else
+            int i = 0; 
+            while (false == VerschiebungsString.matches("\\d+") && i <= 3)
                 {
-                    System.out.println("Bitte geben sie als Verschiebung eine Zahl an und starten sie das Programm erneut!");
+                    i++;
+                    System.out.println("Bitte geben sie als Verschiebung eine ganze Zahl an!");
+                    VerschiebungsString = StringScanner("Geben sie die Verschiebung im Alphabet in ganzen Zahlen an: ", scanner);
+                    if (VerschiebungsString.contains("-"))
+                        {
+                            VerschiebungsString = VerschiebungsString.replace("-", "");
+                            Minus = true;
+                        }
+                    if (VerschiebungsString.matches("\\d+"))
+                        {   
+                            Verschiebung = Integer.parseInt(VerschiebungsString);
+                            if (Minus)
+                                {
+                                    Verschiebung = Verschiebung * -1;
+                                }
+                            return Verschiebung;
+                        }
+                }
+            if (i > 3)
+                {
+                    System.out.println("Bitte geben sie als Verschiebung eine ganze Zahl an und starten sie das Programm erneut!");
                     scanner.close();
                     System.exit(0);
                 }
-            return Verschiebung;
+            return (Verschiebung);
         }
 
 
@@ -85,7 +107,7 @@ public class CaesarVerschlüsselung {
         }
 
 
-    public static String Ergebnisberechnung (String Originaltext, int Verschiebung) //TODO: Verschiebung um 0 implementieren
+    public static String Ergebnisberechnung (String Originaltext, int Verschiebung)
         {
             String ErgebnisWort = "";
             String Ergebnis = "";
