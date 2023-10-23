@@ -20,7 +20,7 @@ public class CaesarVerschlüsselung {
             }
 
 
-    public static int StringInInt(String VerschiebungsString, Scanner scanner)
+    public static int StringInInt(String VerschiebungsString, Scanner scanner) //TODO: Kommazahlen implementieren
         {
             int Verschiebung = 0;
             Boolean Minus = false;
@@ -29,7 +29,7 @@ public class CaesarVerschlüsselung {
                 VerschiebungsString = VerschiebungsString.replace("-", "");
                 Minus = true;
             }
-            if (VerschiebungsString.matches("\\d+"))
+            if (VerschiebungsString.matches("\\d+") && VerschiebungsString.contains(",") == false)
                 {   
                     Verschiebung = Integer.parseInt(VerschiebungsString);
                     if (Minus)
@@ -39,10 +39,10 @@ public class CaesarVerschlüsselung {
                     return Verschiebung;
                 }
             int i = 0; 
-            while (false == VerschiebungsString.matches("\\d+") && i <= 3)
+            while ((false == VerschiebungsString.matches("\\d+") || VerschiebungsString.contains(",")) && i <= 3 )
                 {
                     i++;
-                    System.out.println("Bitte geben sie als Verschiebung eine ganze Zahl an!");
+                    System.out.println("Bitte geben sie als Verschiebung eine ganze Zahl an! Sie haben noch 5 Versuche, dannach müssen sie das Programm neu starten");
                     VerschiebungsString = StringScanner("Geben sie die Verschiebung im Alphabet in ganzen Zahlen an: ", scanner);
                     if (VerschiebungsString.contains("-"))
                         {
