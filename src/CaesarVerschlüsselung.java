@@ -8,7 +8,7 @@ public class CaesarVerschlüsselung {
         System.out.print("Herzlich Willkommen zum Verschlüsselungsprogramm. ");
         System.out.println(
                 "\nZiel des Programms ist es, den Benutzer bei der Caeser Verschlüsselung zu unterstützen!\nWenn sie 0 als Verschlüsselung eingeben, wird die zu kryptografierende Zeichenkette mit allen 25 Verschiebungen angezeigt.");
-        /*
+        /**
          * print gibt die Strings aus verschiedenen Print anweisungen in einer Zeile
          * aus. Println gibt jede print Anweisung in einer Zeile aus (println=printline)
          * ein Java Dokument beinhaltet immer eine Klasse(definiert mit "public class
