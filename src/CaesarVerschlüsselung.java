@@ -8,7 +8,7 @@ public class CaesarVerschlüsselung {
         System.out.print("Herzlich Willkommen zum Verschlüsselungsprogramm. ");
         System.out.println(
                 "\nZiel des Programms ist es, den Benutzer bei der Caeser Verschlüsselung zu unterstützen!\nWenn sie 0 als Verschlüsselung eingeben, wird die zu kryptografierende Zeichenkette mit allen 25 Verschiebungen angezeigt.");
-        /**
+        /*
          * print gibt die Strings aus verschiedenen Print anweisungen in einer Zeile
          * aus. Println gibt jede print Anweisung in einer Zeile aus (println=printline)
          * ein Java Dokument beinhaltet immer eine Klasse(definiert mit "public class
@@ -29,7 +29,7 @@ public class CaesarVerschlüsselung {
     }
 
     public static int PrüfungMinus(String VerschiebungsString, Scanner scanner) {
-        Boolean Minus = false;
+        boolean Minus = false;
         if (VerschiebungsString.contains("-")) {
             VerschiebungsString = VerschiebungsString.replace("-", "");
             Minus = true;
@@ -38,8 +38,8 @@ public class CaesarVerschlüsselung {
     }
 
     public static int StringInInt(String VerschiebungsString, Scanner scanner, Boolean Minus) {
-        int Verschiebung = 0;
-        if (VerschiebungsString.matches("\\d+") && VerschiebungsString.contains(",") == false) {
+        int Verschiebung;
+        if (VerschiebungsString.matches("\\d+") && !VerschiebungsString.contains(",")) {
             Verschiebung = Integer.parseInt(VerschiebungsString);
             if (Minus) {
                 Verschiebung = Verschiebung * -1;
@@ -53,7 +53,7 @@ public class CaesarVerschlüsselung {
     public static int StringInIntBeiBuchstabeOderKomma(String VerschiebungsString, Scanner scanner, Boolean Minus) {
         int i = 4;
         int Verschiebung = 0;
-        while ((false == VerschiebungsString.matches("\\d+") || VerschiebungsString.contains(",")) && i >= 1) {
+        while ((!VerschiebungsString.matches("\\d+") || VerschiebungsString.contains(",")) && i >= 1) {
             i = i - 1;
             System.out.println("Bitte geben sie als Verschiebung eine ganze Zahl an! Sie haben noch " + (i + 1)
                     + " Versuch(e), dannach müssen sie das Programm neu starten!");
@@ -108,15 +108,14 @@ public class CaesarVerschlüsselung {
 
     public static String StringScanner(String Text, Scanner scanner) {
         System.out.print(Text);
-        String input = scanner.nextLine();
-        return (input);
+        return (scanner.nextLine());
     }
 
     public static String ErgebnisBerechnung(String Originaltext, int Verschiebung)
     {
         String ErgebnisWort = "";
         String Ergebnis = "";
-        if (Verschiebung == 0 || 0 == Verschiebung % 26) {
+        if (0 == (Verschiebung % 26)) {
             for (int V = 0; V < 26; V++) {
                 for (int i = 0; i < Originaltext.length(); i++) {
                     char OriginalChar = Originaltext.charAt(i);
