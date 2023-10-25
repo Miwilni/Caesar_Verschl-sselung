@@ -2,7 +2,7 @@ import java.util.Scanner;
 import java.util.Arrays;
 import java.util.List;
 
-public class CaesarVerschlüsselung {
+public class CaesarKryptografierung {
 
     public static void main(String[] args) {
         System.out.print("Herzlich Willkommen zum Verschlüsselungsprogramm. ");
@@ -11,33 +11,31 @@ public class CaesarVerschlüsselung {
         /*
          * print gibt die Strings aus verschiedenen Print anweisungen in einer Zeile
          * aus. Println gibt jede print Anweisung in einer Zeile aus (println=printline)
-         * ein Java Dokument beinhaltet immer eine Klasse(definiert mit "public class
-         * [Name der
-         * Klasse]"), in der widerum eine Hauptmethode namens main mit "public
+         * ein Java Dokument beinhaltet immer eine Klasse (definiert mit "public class
+         * [Name der Klasse]"), in der wiederum eine Hauptmethode namens main mit "public
          * static void main (String[] args){
-         * }" festgelegt wird. Am Ende jeder Anweisungszeile innerhalb einer Methode steht ein "
-         * ;" und
+         * }" festgelegt wird. Am Ende jeder Anweisungszeile innerhalb einer Methode steht ein ";" und
          * bereiche von z.B. Klassen werden mit "{" angefangen und mit "}" beendet.
          */
         Scanner scanner = new Scanner(System.in);
         String Originaltext = StringScanner("Geben sie die zu kryptografierende Zeichenkette ein: ", scanner);
         String VerschiebungString = StringScanner("Geben sie die Verschiebung im Alphabet in ganzen Zahlen an: ",
                 scanner);
-        int Verschiebung = PrüfungMinus(VerschiebungString, scanner);
+        int Verschiebung = VerschiebungConfig(VerschiebungString, scanner);
         System.out.println("Kryptografierte Zeichenkette: " + ErgebnisBerechnung(Originaltext, Verschiebung));
         scanner.close();
     }
 
-    public static int PrüfungMinus(String VerschiebungsString, Scanner scanner) {
+    public static int VerschiebungConfig(String VerschiebungsString, Scanner scanner) {
         boolean Minus = false;
         if (VerschiebungsString.contains("-")) {
             VerschiebungsString = VerschiebungsString.replace("-", "");
             Minus = true;
         }
-        return (StringInInt(VerschiebungsString, scanner, Minus));
+        return (StringToInt(VerschiebungsString, scanner, Minus));
     }
 
-    public static int StringInInt(String VerschiebungsString, Scanner scanner, Boolean Minus) {
+    public static int StringToInt(String VerschiebungsString, Scanner scanner, Boolean Minus) {
         int Verschiebung;
         if (VerschiebungsString.matches("\\d+") && !VerschiebungsString.contains(",")) {
             Verschiebung = Integer.parseInt(VerschiebungsString);
@@ -113,24 +111,24 @@ public class CaesarVerschlüsselung {
 
     public static String ErgebnisBerechnung(String Originaltext, int Verschiebung)
     {
-        String ErgebnisWort = "";
-        String Ergebnis = "";
+        StringBuilder ErgebnisWort = new StringBuilder();
+        StringBuilder Ergebnis = new StringBuilder();
         if (0 == (Verschiebung % 26)) {
             for (int V = 0; V < 26; V++) {
                 for (int i = 0; i < Originaltext.length(); i++) {
                     char OriginalChar = Originaltext.charAt(i);
-                    ErgebnisWort = ErgebnisWort + UpperLower(OriginalChar, V);
+                    ErgebnisWort.append(UpperLower(OriginalChar, V));
                 }
-                Ergebnis = Ergebnis + "\n" + (V + 1) + ". " + ErgebnisWort;
-                ErgebnisWort = "";
+                Ergebnis.append("\n").append(V + 1).append(". ").append(ErgebnisWort);
+                ErgebnisWort = new StringBuilder();
             }
-            return (Ergebnis);
+            return (Ergebnis.toString());
         }
         for (int i = 0; i < Originaltext.length(); i++) {
             char OriginalChar = Originaltext.charAt(i);
-            Ergebnis = Ergebnis + UpperLower(OriginalChar, Verschiebung);
+            Ergebnis.append(UpperLower(OriginalChar, Verschiebung));
         }
-        return (Ergebnis);
+        return (Ergebnis.toString());
     }
 
     public static char UpperLower(char OriginalChar, int Verschiebung) {
